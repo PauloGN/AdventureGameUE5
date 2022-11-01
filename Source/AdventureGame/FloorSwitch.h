@@ -20,22 +20,22 @@ public:
 	AFloorSwitch();
 
 	//COLISSION
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Stats | Switch")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "States | Switch")
 	USphereComponent* TriggerSphere;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Stats | Switch")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "States | Switch")
 	UStaticMeshComponent* FloorSwitch;//the overllaped obj to trigger the action
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Stats | Switch")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "States | Switch")
 	UStaticMeshComponent* DoorSwitch;
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Stats | Switch")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "States | Switch")
 	FVector InitialDoorLocation;//Initial location for the door
 
-	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "Stats | Switch")
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite, Category = "States | Switch")
 	FVector InitialSwitchLocation;//Initial Location for the floor switch
 
-	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Stats | Switch")
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "States | Switch")
 	float DelayDoor;
 
 	FTimerHandle TimerHandle;
@@ -63,21 +63,21 @@ public:
 	void OnSphereEndOvelap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex);
 
 	// Called in Blueprint
-	UFUNCTION(BlueprintImplementableEvent, Category = "Stats | Door")
+	UFUNCTION(BlueprintImplementableEvent, Category = "States | Door")
 	void RaiseDoor();
-	UFUNCTION(BlueprintImplementableEvent, Category = "Stats | Door")
+	UFUNCTION(BlueprintImplementableEvent, Category = "States | Door")
 	void LowerDoor();
 
 	// Called in Blueprint
-	UFUNCTION(BlueprintImplementableEvent, Category = "Stats | Door")
+	UFUNCTION(BlueprintImplementableEvent, Category = "States | Door")
 	void RaiseFloor();
-	UFUNCTION(BlueprintImplementableEvent, Category = "Stats | Door")
+	UFUNCTION(BlueprintImplementableEvent, Category = "States | Door")
 	void LowerFloor();
 
-	UFUNCTION(BlueprintCallable, Category = "Stats | Switch" )
+	UFUNCTION(BlueprintCallable, Category = "States | Switch" )
 	void SteppedInFloorSwitch(float value);
 
-	UFUNCTION(BlueprintCallable, Category = "Stats | Switch")
+	UFUNCTION(BlueprintCallable, Category = "States | Switch")
 	void UpdateDoorSwitch(float value);
 
 };
