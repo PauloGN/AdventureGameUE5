@@ -19,6 +19,17 @@ Basically, it consists of a floor that, as soon as the character steps on it, wi
 The floating Platform mechanic is based on a symmetric movement: distance times time. The designer can adjust the speed, distance traveled, and delay before swapping to move in the opposite direction.
 Variables are exposed in the editor under the category states, subcategory platform;
 ##### Variables:
-+ The EndPoint is a vector to set the target position to move to, (it has a special widget control).
++ EndPoint is a vector to set the target position to move to, (it has a special widget control).
 + InterpSpeed is a float that controls how fast the platform interpolates between the start point to the end point.
 + InterpDelayTime is a float that controls how much the platform should wait before starts moving again.
+
+#### Moving Platform
+
+Moving platform, is a type of platform that moves or rotates on any given axis, The designer can adjust the speed, distance traveled, and delay before swapping to move in the opposite direction.Variables are exposed in the editor under the category states, subcategory Movement; The movement does not follow an asymmetric interpolation like the floating platform. Instead, its movement is uniform and has a delay time option controlled by a variable exposed on the editor.
+##### Variables:
+
++ PlatformSpeed is a vector, feeding this vector in any direction (x, y, z) will tell the platform to move in the given path. The higher the value, the higher the speed on the axis. Note: more than one axis can be fed.
++ DistanceToMove is a float, the value fed here tells the platform how far it should go and return to its initial position.
++ RotationVelocity is a vector, feeding this vector in any direction (x, y, z) will tell the platform to rotate around the given Axis. The higher the value, the higher the speed on the axis. Note: more than one axis can be fed.
++ RotatePlatform is a boolean, while true (checked) means the platform should rotate, and false (not checked), means the platform should not rotate regardless of the values fed into the vector RotationVelocity.
++ MovePauseDelayTime is a float, the value tells the platform how long it should wait before starts moving in the opposite direction. (back to the initial position, going back and forth)
