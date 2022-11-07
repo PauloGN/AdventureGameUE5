@@ -65,9 +65,7 @@ void AMovingPlatform::Move(float DeltaTime)
 		SetActorLocation(StartLocation);
 		PlatformSpeed *= -1;
 		GetWorldTimerManager().SetTimer(PlatformTimerHandle, this, &ThisClass::ToggleDirection, MovePauseDelayTime);
-
 	}
-
 	SetActorLocation(CurrentLocation);
 }
 
