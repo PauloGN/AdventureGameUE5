@@ -22,3 +22,4 @@ void APickup::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActo
 	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Pickup EndOverlapped"));
 
 }
+
