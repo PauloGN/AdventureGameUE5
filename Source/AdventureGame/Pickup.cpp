@@ -2,6 +2,7 @@
 
 
 #include "Pickup.h"
+#include "MainCharacter.h"
 
 APickup::APickup()
 {
@@ -11,15 +12,22 @@ void APickup::OnSphereBeginOvelap(UPrimitiveComponent* OverlappedComponent, AAct
 {
 	Super::OnSphereBeginOvelap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex, FromSweep, SweepResult);
 
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Blue, TEXT("Pickup Overlapped"));
+	if (OtherActor)
+	{
+		AMainCharacter* MainCharREF = Cast<AMainCharacter>(OtherActor);
 
+		if (MainCharREF)
+		{
+			OnPickupBP(MainCharREF);
+		}
+		Destroy();
+	}
 }
 
 void APickup::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
 {
 	Super::OnSphereEndOverlap(OverlappedComponent, OtherActor, OtherComp, OtherBodyIndex);
 
-	GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Pickup EndOverlapped"));
-
+	//GEngine->AddOnScreenDebugMessage(-1, 10.f, FColor::Red, TEXT("Pickup EndOverlapped"));
 }
 

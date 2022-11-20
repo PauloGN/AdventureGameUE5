@@ -17,7 +17,8 @@ class ADVENTUREGAME_API AHazard : public AItem
 public:
 
 	AHazard();
-
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "States | Damage")
+	float Damage;
 
 public:
 

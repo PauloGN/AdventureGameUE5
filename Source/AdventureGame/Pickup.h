@@ -27,5 +27,6 @@ public:
 
 	virtual void OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)override;
 
-	
+	UFUNCTION(BlueprintImplementableEvent, Category = "States | Pickup")
+	void OnPickupBP(class AMainCharacter* Target);
 };

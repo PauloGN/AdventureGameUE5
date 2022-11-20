@@ -79,7 +79,13 @@ public:
 	void TurnAtRate(const float rate);
 	void LookUpRate(const float rate);
 
-	UFUNCTION(BlueprintCallable, Category = "States | EX")
+	UFUNCTION(BlueprintCallable, Category = "States | EXP")
 	void AddExp(const float value);
+
+	UFUNCTION(BlueprintCallable, Category = "States | Dmg")
+	void DecrementHealth(const float amount);
+
+	UFUNCTION(BlueprintCallable, Category = "States | Dmg")
+	void Die();
 
 };

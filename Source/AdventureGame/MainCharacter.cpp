@@ -166,3 +166,21 @@ void AMainCharacter::AddExp(const float value)
 	}
 }
 
+void AMainCharacter::DecrementHealth(const float amount)
+{
+	if (Health - amount <= 0.f)
+	{
+		Die();
+		Health = 0.f;
+	}
+	else
+	{
+		Health -= amount;
+	}
+}
+
+void AMainCharacter::Die()
+{
+	GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Red, FString::Printf(TEXT("Die Die Die")));
+}
+

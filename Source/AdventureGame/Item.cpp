@@ -69,8 +69,6 @@ void AItem::OnSphereBeginOvelap(UPrimitiveComponent* OverlappedComponent, AActor
 	{
 		UGameplayStatics::PlaySound2D(this, OverlapSound);
 	}
-
-	Destroy();
 }
 
 void AItem::OnSphereEndOverlap(UPrimitiveComponent* OverlappedComponent, AActor* OtherActor, UPrimitiveComponent* OtherComp, int32 OtherBodyIndex)
