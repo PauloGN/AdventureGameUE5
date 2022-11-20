@@ -35,6 +35,31 @@ public:
 	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "PlayerStats | Movement")
 	float BaseKeyBoardLookUpRate;
 
+	/*** Player Stats*/
+
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "PlayerStats")
+	float MaxHealth;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerStats")
+	float Health;
+	
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "PlayerStats")
+	float MaxStamina;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerStats")
+	float Stamina;
+
+	//Max points to up level
+	UPROPERTY(EditDefaultsOnly, BlueprintReadOnly, Category = "PlayerStats")
+	float MaxSoulPoints;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerStats")
+	float SoulPoints;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "PlayerStats")
+	int32 Level;
+
+
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -54,5 +79,7 @@ public:
 	void TurnAtRate(const float rate);
 	void LookUpRate(const float rate);
 
+	UFUNCTION(BlueprintCallable, Category = "States | EX")
+	void AddExp(const float value);
 
 };

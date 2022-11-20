@@ -32,6 +32,17 @@ AMainCharacter::AMainCharacter()
 	GetCharacterMovement()->RotationRate = FRotator(0.f, 540.f, 0.f);//Yaw rotation speed rate whent orienting rotation to movement
 	GetCharacterMovement()->JumpZVelocity = 700.f;//Jump Height
 	GetCharacterMovement()->AirControl = 0.4f;//control direction while in the air
+
+	/** Player Stats*/
+	
+	MaxHealth		= 100.f;
+	Health			= 100.f;
+	MaxStamina		= 100.f;
+	Stamina			= 75.f;
+	MaxSoulPoints	= 100.f;
+	SoulPoints		= 0.f;
+	Level			= 0;
+
 }
 
 // Called when the game starts or when spawned
@@ -64,9 +75,6 @@ void AMainCharacter::SetupPlayerInputComponent(UInputComponent* PlayerInputCompo
 	//Action
 	PlayerInputComponent->BindAction("Jump", EInputEvent::IE_Pressed, this, &ACharacter::Jump);
 	PlayerInputComponent->BindAction("Jump", EInputEvent::IE_Released, this,&ACharacter::StopJumping);
-
-
-
 
 }
 
@@ -117,6 +125,44 @@ void AMainCharacter::LookUpRate(const float rate)
 	{
 		const float InputRate = rate * World->GetDeltaSeconds() * BaseKeyBoardLookUpRate;
 		AddControllerPitchInput(InputRate);
+	}
+}
+
+void AMainCharacter::AddExp(const float value)
+{
+	///Check level before continuing, set a max level to be reached (LEVEL 30)
+	if (Level >29)
+	{
+		return;
+	}
+
+	//Check if the character will level up
+	bool bCheckLevelUp = (SoulPoints + value >= MaxSoulPoints);
+	if (bCheckLevelUp)
+	{
+		Level++;
+		//Get the remaining EXP
+		SoulPoints = (SoulPoints + value) - MaxSoulPoints;
+
+		//Update difficulty to level up
+		MaxSoulPoints *= 1.5f;
+
+		//Check if the character should level up again
+		bool bShouldlevelupagain = (SoulPoints > MaxSoulPoints);
+		if (bShouldlevelupagain)
+		{
+			//Saving remaining EXP
+			const float NewValue = SoulPoints;
+			//reset soul points to prepare next iteration
+			SoulPoints = 0.0f;
+			//Add remaining XP to the soul points
+			AddExp(NewValue);
+			GEngine->AddOnScreenDebugMessage(-1, 10, FColor::Blue, FString::Printf(TEXT("%f"), SoulPoints));
+		}	
+	}
+	else
+	{
+		SoulPoints += value;
 	}
 }
 
